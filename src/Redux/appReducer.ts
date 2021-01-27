@@ -1,30 +1,26 @@
-
 type InitialStateType = {
     isLoading: boolean
+    isError: boolean
 }
 
 const initialState: InitialStateType = {
-    isLoading: false
+    isLoading: false,
+    isError: false
 }
 
-type ActionsType = ReturnType<typeof  statusLoading>
+type ActionsType = ReturnType<typeof statusLoading> | ReturnType<typeof setErrorStatus>
 
-export const appReducer = (state = initialState, actions: ActionsType):InitialStateType => {
+export const appReducer = (state = initialState, actions: ActionsType): InitialStateType => {
     switch (actions.type) {
         case "STATUS-LOADING":
-            return {...state, isLoading:actions.isLoad}
+            return {...state, isLoading: actions.isLoad}
+        case "STATUS-ERROR":
+            return {...state, isError: actions.isError}
         default:
             return state
     }
 
 }
 
-const statusLoading = (isLoad: boolean) => ({type: 'STATUS-LOADING', isLoad} as const)
-
-// export const thunkSetMovies = (title: string) => (dispatch: Dispatch<ActionsType>) => {
-//     movieAPI().getByTitle(title)
-//         .then(res => {
-//             debugger
-//             dispatch(setMoviesAC(res.data))
-//         })
-// }
+export const statusLoading = (isLoad: boolean) => ({type: 'STATUS-LOADING', isLoad} as const)
+export const setErrorStatus = (isError: boolean) => ({type: 'STATUS-ERROR', isError} as const)

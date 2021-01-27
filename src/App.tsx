@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
-import Movie from "./Movie";
+import Movie from "./Ui/Movie";
 import {thunkSetMovies} from "./Redux/moviesReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStoreType} from "./Redux/store";
-import Preloader from "./Preloader";
+import Preloader from "./Ui/Preloader/Preloader";
 
 
 function App() {
