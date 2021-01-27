@@ -4,6 +4,7 @@ import Movie from "./Movie";
 import {thunkSetMovies} from "./Redux/moviesReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStoreType} from "./Redux/store";
+import Preloader from "./Preloader";
 
 
 function App() {
@@ -14,21 +15,28 @@ function App() {
     const title = useSelector<RootStoreType, string>(state => state.movies.Title)
     const rating = useSelector<RootStoreType, string>(state => state.movies.imdbRating)
     const [inputValue, setInputValue] = useState<string>('')
+    const isLoading = useSelector<RootStoreType, boolean>(state => state.app.isLoading)
 
-
-    const onClickHandler = () => dispatch(thunkSetMovies(inputValue))
+    const onClickHandler = () => {
+        dispatch(thunkSetMovies(inputValue))
+        setInputValue('')
+    }
 
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.currentTarget.value)
     }
 
     return <div>
+        {isLoading ? <Preloader/> : null}
         <header>
             <h1>OMDb API</h1>
             <input type="text" placeholder="Search" id="search"
                    value={inputValue}
                    className="search"
                    onChange={onChangeInputValue}
+                   onKeyPress={(event => {
+                       if (event.key === 'Enter') onClickHandler()
+                   })}
             />
             <button onClick={onClickHandler}>Search</button>
         </header>
