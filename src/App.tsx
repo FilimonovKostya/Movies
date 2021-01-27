@@ -5,17 +5,27 @@ import {thunkSetMovies} from "./Redux/moviesReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStoreType} from "./Redux/store";
 import Preloader from "./Ui/Preloader/Preloader";
+import ErrorMessage from "./Ui/ErrorMessage/ErrorMessage";
 
 
 function App() {
     const dispatch = useDispatch()
 
-    const poster = useSelector<RootStoreType, string>(state => state.movies.Poster)
-    const description = useSelector<RootStoreType, string>(state => state.movies.Plot)
-    const title = useSelector<RootStoreType, string>(state => state.movies.Title)
-    const rating = useSelector<RootStoreType, string>(state => state.movies.imdbRating)
+    // const poster = useSelector<RootStoreType, string>(state => state.movies.response.Poster)
+    // const description = useSelector<RootStoreType, string>(state => state.movies.response.Plot)
+    // const title = useSelector<RootStoreType, string>(state => state.movies.response.Title)
+    // const rating = useSelector<RootStoreType, string>(state => state.movies.response.imdbRating)
+    // const [inputValue, setInputValue] = useState<string>('')
+    // const isLoading = useSelector<RootStoreType, boolean>(state => state.app.isLoading)
+    // const isError = useSelector<RootStoreType, boolean>(state => state.app.isError)
+
+    const poster =''
+    const description =''
+    const title =''
+    const rating = 'useSelector<RootStoreType, string>(state => state.movies.response.imdbRating)'
     const [inputValue, setInputValue] = useState<string>('')
     const isLoading = useSelector<RootStoreType, boolean>(state => state.app.isLoading)
+    const isError = useSelector<RootStoreType, boolean>(state => state.app.isError)
 
     const onClickHandler = () => {
         dispatch(thunkSetMovies(inputValue))
@@ -43,6 +53,7 @@ function App() {
         <main id="main">
             {title ? <Movie description={description} title={title} poster={poster} rating={rating}/> : null}
         </main>
+        {isError ? <ErrorMessage isError={isError}/> : null}
         <footer className="footer">
             <p> Use This <a href="http://www.omdbapi.com/"> API</a></p>
         </footer>

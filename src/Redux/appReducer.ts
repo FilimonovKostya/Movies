@@ -8,7 +8,7 @@ const initialState: InitialStateType = {
     isError: false
 }
 
-type ActionsType = ReturnType<typeof statusLoading> | ReturnType<typeof setErrorStatus>
+type ActionsType = ReturnType<typeof statusLoadingAC> | ReturnType<typeof setErrorStatusAC>
 
 export const appReducer = (state = initialState, actions: ActionsType): InitialStateType => {
     switch (actions.type) {
@@ -22,5 +22,5 @@ export const appReducer = (state = initialState, actions: ActionsType): InitialS
 
 }
 
-export const statusLoading = (isLoad: boolean) => ({type: 'STATUS-LOADING', isLoad} as const)
-export const setErrorStatus = (isError: boolean) => ({type: 'STATUS-ERROR', isError} as const)
+export const statusLoadingAC = (isLoad: boolean) => ({type: 'STATUS-LOADING', isLoad} as const)
+export const setErrorStatusAC = (isError: boolean) => ({type: 'STATUS-ERROR', isError} as const)

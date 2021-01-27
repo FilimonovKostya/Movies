@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import style from './ErrorMessage.module.css'
 
-const ErrorMessage = () => {
+type ErrorMessagePropsType = {
+    isError:boolean
+}
 
-    const [close, setClose] = useState<boolean>(false)
+const ErrorMessage = (props:ErrorMessagePropsType) => {
 
-    return !close ? <div className={style.container}>
+    const [close, setClose] = useState<boolean>(props.isError)
+
+    return close ? <div className={style.container}>
             <div id="error-box" className={style.errorBox}>
                 <div className={style.face2}>
                     <div className={style.eye}/>

@@ -5,7 +5,7 @@ export type RatingResponseType = {
     Value: string
 }
 
-export type ResponseType = {
+export type ResponseType<D = {} >  = {
     Actors: string
     Awards: string
     BoxOffice: string
@@ -32,6 +32,10 @@ export type ResponseType = {
     imdbRating: string
     imdbVotes: string
 }
+export type ErrorResponseType = {
+    Error:string
+    Response:boolean
+}
 
 const instance = axios.create({
     baseURL: "http://www.omdbapi.com/",
@@ -42,7 +46,7 @@ const apiKey = '?apikey=fbf45cd4'
 export const movieAPI = () => {
     return {
         getByTitle: (title: string) => {
-            return instance.get<ResponseType>(`${apiKey}&t=${title}`)
+            return instance.get<ResponseType<{data: ErrorResponseType}>>(`${apiKey}&t=${title}`)
         }
     }
 }
