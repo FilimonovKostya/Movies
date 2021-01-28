@@ -16,7 +16,7 @@ const Movie = (props: MoviePropsType) => {
     };
 
     return <div className="movie">
-        <img src={props.poster} alt={props.title}/>
+        {  <img src={ props.poster } alt={props.title}/> }
         <div className="movie-info">
             <h3>{props.title}</h3>
             <span className={getClassByRate(props.rating)}>{props.rating}</span>
