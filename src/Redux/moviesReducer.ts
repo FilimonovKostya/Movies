@@ -4,7 +4,11 @@ import {setErrorStatusAC, setStatusGetFilms, setStatusLoadingAC} from "./appRedu
 
 const initialState: ResponseType = {} as ResponseType
 
-type ActionsType = ReturnType<typeof setMoviesAC> | ReturnType<typeof setStatusLoadingAC> | ReturnType<typeof setErrorStatusAC> | ReturnType<typeof setStatusGetFilms>
+type ActionsType =
+    ReturnType<typeof setMoviesAC>
+    | ReturnType<typeof setStatusLoadingAC>
+    | ReturnType<typeof setErrorStatusAC>
+    | ReturnType<typeof setStatusGetFilms>
 
 export const moviesReducer = (state: ResponseType = initialState, actions: ActionsType): ResponseType => {
     switch (actions.type) {
@@ -33,6 +37,7 @@ export const thunkSetMovies = (title: string) => (dispatch: Dispatch<ActionsType
 
         })
         .catch(() => {
+            dispatch(setStatusGetFilms('failed'))
             dispatch(setErrorStatusAC('Какая-то неведанная ошибка'))
         })
 

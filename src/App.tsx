@@ -34,6 +34,7 @@ function App() {
         <header>
             <h1>OMDb API</h1>
             <input type="text" placeholder="Search" id="search"
+                   disabled={isLoading}
                    value={inputValue}
                    className="search"
                    onChange={onChangeInputValue}
