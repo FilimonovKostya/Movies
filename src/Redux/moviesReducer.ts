@@ -23,11 +23,11 @@ export const thunkSetMovies = (title: string) => (dispatch: Dispatch<ActionsType
     dispatch(setStatusGetFilms('loading'))
     movieAPI().getByTitle(title)
         .then((res) => {
-            console.log(res.data)
             dispatch(setStatusGetFilms('success'))
             dispatch(setMoviesAC(res.data))
             dispatch(setStatusLoadingAC(false))
             if (res.data.Error) {
+                dispatch(setStatusGetFilms('failed'))
                 dispatch(setErrorStatusAC(res.data.Error))
             }
 

@@ -7,7 +7,7 @@ type ErrorMessagePropsType = {
 
 const ErrorMessage = (props:ErrorMessagePropsType) => {
 
-    const [open, setOpen] = useState<boolean>(!!props.isError)
+    const [open, setOpen] = useState<boolean>(true)
 
     return open ? <div className={style.container}>
             <div id="error-box" className={style.errorBox}>

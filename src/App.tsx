@@ -46,7 +46,7 @@ function App() {
         <main id="main">
             {status === 'success' ? <Movie description={description} title={title} poster={poster} rating={rating}/> : null}
         </main>
-        {isError ? <ErrorMessage isError={isError}/> : null}
+        {status === 'failed' ? <ErrorMessage isError={isError}/> : null}
         <footer className="footer">
             <p> Use This <a href="http://www.omdbapi.com/"> API</a></p>
         </footer>
