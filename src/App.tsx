@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootStoreType} from "./Redux/store";
 import Preloader from "./Ui/Preloader/Preloader";
 import ErrorMessage from "./Ui/ErrorMessage/ErrorMessage";
+import {InputField} from "./Ui/InputField/InputField";
 
 
 function App() {
@@ -30,38 +31,16 @@ function App() {
         setYearInput('')
     }
 
-    const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitleInput(e.currentTarget.value)
-    }
-
-    const onChangeYear = (e: ChangeEvent<HTMLInputElement>) => {
-        setYearInput(e.currentTarget.value)
-    }
+    const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => setTitleInput(e.currentTarget.value)
+    const onChangeYear = (e: ChangeEvent<HTMLInputElement>) => setYearInput(e.currentTarget.value)
 
     return <div>
         {isLoading ? <Preloader/> : null}
         <header>
             <h1>OMDb API</h1>
-            <input type="text" placeholder="Title" id="search"
-                   disabled={isLoading}
-                   value={titleInput}
-                   className="search"
-                   onChange={onChangeInputValue}
-                   onKeyPress={(event => {
-                       if (event.key === 'Enter') onClickHandler()
-                   })}
-            />
-            <input type="text" placeholder="Year" id="year"
-                   disabled={isLoading}
-                   value={yearInput}
-                   className="search"
-                   onChange={onChangeYear}
-                   onKeyPress={(event => {
-                       if (event.key === 'Enter') onClickHandler()
-                   })}
-            />
+            <InputField isLoading={isLoading} onChangeInputValue={onChangeInputValue} onClickHandler={onClickHandler} inputValue={titleInput}/>
+            <InputField isLoading={isLoading} onChangeInputValue={onChangeYear} onClickHandler={onClickHandler} inputValue={yearInput}/>
             <a className="rainbow rainbow-5" onClick={onClickHandler}>Search</a>
-
         </header>
         <main id="main">
             {status === 'success' ? <Movie description={description} title={title} poster={poster} rating={rating} year={year} imdbId={imbdId}/> : null}
@@ -73,5 +52,6 @@ function App() {
     </div>
 
 }
+
 
 export default App
