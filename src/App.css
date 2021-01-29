@@ -30,7 +30,7 @@ header h1 {
     font-size: 1.5rem;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -79,7 +79,7 @@ main {
     letter-spacing: 1px;
 }
 
-.test{
+.test {
     display: flex;
     justify-content: space-between;
 }
@@ -111,7 +111,7 @@ main {
     bottom: 0;
     right: 0;
     max-height: 100%;
-     transform: translateY(101%);
+    transform: translateY(101%);
     overflow-y: auto;
     transition: transform 0.3s ease-in;
     display: flex;
@@ -124,14 +124,28 @@ main {
     transform: translateY(0);
 }
 
+.footer {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-family: "Lato", sans-serif;
+    font-size: 1em;
+    bottom: 10px;
+}
+
 .footer p {
     color: #eee;
     text-align: center;
 }
 
+.footer p a {
+    color: #00AAC3;
+}
+
 
 /*Button*/
-.rainbow{
+.rainbow {
     background-color: #343A40;
     border-radius: 4px;
     color: #fff;
@@ -140,15 +154,35 @@ main {
 
 }
 
-.rainbow-1:hover{
+.rainbow-1:hover {
     background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
-    animation:slidebg 5s linear infinite;
+    animation: slidebg 5s linear infinite;
 }
 
 
+.rainbow-5:hover {
+    background-image: linear-gradient(
+            to right,
+            #E7484F,
+            #E7484F 16.65%,
+            #F68B1D 16.65%,
+            #F68B1D 33.3%,
+            #FCED00 33.3%,
+            #FCED00 49.95%,
+            #009E4F 49.95%,
+            #009E4F 66.6%,
+            #00AAC3 66.6%,
+            #00AAC3 83.25%,
+            #732982 83.25%,
+            #732982 100%,
+            #E7484F 100%
+    );
+    animation: slidebg 2s linear infinite;
+}
+
 @keyframes slidebg {
     to {
-        background-position:20vw;
+        background-position: 20vw;
     }
 }
 
@@ -157,14 +191,11 @@ main {
     header {
         flex-direction: column;
     }
+
     header h1 {
         padding: 0.5rem 1rem;
     }
 }
-
-
-
-
 
 
 

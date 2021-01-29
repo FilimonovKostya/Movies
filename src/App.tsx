@@ -42,7 +42,7 @@ function App() {
         {isLoading ? <Preloader/> : null}
         <header>
             <h1>OMDb API</h1>
-            <input type="text" placeholder="Search" id="search"
+            <input type="text" placeholder="Title" id="search"
                    disabled={isLoading}
                    value={titleInput}
                    className="search"
@@ -60,14 +60,15 @@ function App() {
                        if (event.key === 'Enter') onClickHandler()
                    })}
             />
-            <button onClick={onClickHandler}>Search</button>
+            <a className="rainbow rainbow-5" onClick={onClickHandler}>Search</a>
+
         </header>
         <main id="main">
             {status === 'success' ? <Movie description={description} title={title} poster={poster} rating={rating} year={year} imdbId={imbdId}/> : null}
         </main>
         {status === 'failed' ? <ErrorMessage isError={isError}/> : null}
         <footer className="footer">
-            <p> Use This <a href="http://www.omdbapi.com/"> API</a></p>
+            <p> Use This <a href="http://www.omdbapi.com/" target={'blank'}> API</a></p>
         </footer>
     </div>
 

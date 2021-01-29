@@ -214,24 +214,3 @@ button, .dot {
         left: 25%;
     }
 }
-footer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    font-size: 1em;
-    text-transform: uppercase;
-    padding: 10px;
-    font-family: "Lato", sans-serif;
-}
-footer p {
-    color: #EF8D9C;
-    letter-spacing: 2px;
-}
-footer a {
-    color: #B0DB7D;
-    text-decoration: none;
-}
-footer a:hover {
-    color: #FFC39E;
-}
