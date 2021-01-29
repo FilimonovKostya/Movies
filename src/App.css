@@ -30,6 +30,10 @@ header h1 {
     font-size: 1.5rem;
 }
 
+a{
+    text-decoration: none;
+}
+
 .search {
     background-color: transparent;
     border: 2px solid var(--primary-color);
@@ -71,15 +75,13 @@ main {
 
 .movie-info {
     color: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 0.5rem 1rem 1rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
-.movie-info h3 {
-    margin-top: 0;
+.test{
+    display: flex;
+    justify-content: space-between;
 }
 
 .movie-info span {
@@ -109,9 +111,13 @@ main {
     bottom: 0;
     right: 0;
     max-height: 100%;
-    transform: translateY(101%);
+     transform: translateY(101%);
     overflow-y: auto;
     transition: transform 0.3s ease-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .movie:hover .overview {
@@ -122,6 +128,30 @@ main {
     color: #eee;
     text-align: center;
 }
+
+
+/*Button*/
+.rainbow{
+    background-color: #343A40;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 16px;
+
+}
+
+.rainbow-1:hover{
+    background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+    animation:slidebg 5s linear infinite;
+}
+
+
+@keyframes slidebg {
+    to {
+        background-position:20vw;
+    }
+}
+
 
 @media (max-width: 580px) {
     header {

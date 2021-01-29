@@ -15,23 +15,27 @@ function App() {
     const description = useSelector<RootStoreType, string>(state => state.movies.Plot)
     const title = useSelector<RootStoreType, string>(state => state.movies.Title)
     const rating = useSelector<RootStoreType, string>(state => state.movies.imdbRating)
-    const [titleInputValue, setTitleInputValue] = useState<string>('')
-    const [year,setYear] = useState<string>('')
     const isLoading = useSelector<RootStoreType, boolean>(state => state.app.isLoading)
     const isError = useSelector<RootStoreType, string | null>(state => state.app.isError)
     const status = useSelector<RootStoreType, string>(state => state.app.statusGetFilms)
+    const year = useSelector<RootStoreType, string>(state => state.movies.Year)
+    const imbdId = useSelector<RootStoreType, string>(state => state.movies.imdbID)
+    const [titleInput, setTitleInput] = useState<string>('')
+    const [yearInput, setYearInput] = useState<string>('')
+
 
     const onClickHandler = () => {
-        dispatch(thunkSetMovies(titleInputValue, year))
-        setTitleInputValue('')
+        dispatch(thunkSetMovies(titleInput, yearInput))
+        setTitleInput('')
+        setYearInput('')
     }
 
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitleInputValue(e.currentTarget.value)
+        setTitleInput(e.currentTarget.value)
     }
 
     const onChangeYear = (e: ChangeEvent<HTMLInputElement>) => {
-        setYear(e.currentTarget.value)
+        setYearInput(e.currentTarget.value)
     }
 
     return <div>
@@ -40,7 +44,7 @@ function App() {
             <h1>OMDb API</h1>
             <input type="text" placeholder="Search" id="search"
                    disabled={isLoading}
-                   value={titleInputValue}
+                   value={titleInput}
                    className="search"
                    onChange={onChangeInputValue}
                    onKeyPress={(event => {
@@ -49,7 +53,7 @@ function App() {
             />
             <input type="text" placeholder="Year" id="year"
                    disabled={isLoading}
-                   value={year}
+                   value={yearInput}
                    className="search"
                    onChange={onChangeYear}
                    onKeyPress={(event => {
@@ -59,7 +63,7 @@ function App() {
             <button onClick={onClickHandler}>Search</button>
         </header>
         <main id="main">
-            {status === 'success' ? <Movie description={description} title={title} poster={poster} rating={rating}/> : null}
+            {status === 'success' ? <Movie description={description} title={title} poster={poster} rating={rating} year={year} imdbId={imbdId}/> : null}
         </main>
         {status === 'failed' ? <ErrorMessage isError={isError}/> : null}
         <footer className="footer">
