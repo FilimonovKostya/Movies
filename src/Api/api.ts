@@ -5,7 +5,7 @@ export type RatingResponseType = {
     Value: string
 }
 
-export type ResponseType  = {
+export type ResponseType = {
     Actors: string
     Awards: string
     BoxOffice: string
@@ -43,8 +43,8 @@ const apiKey = '?apikey=fbf45cd4'
 
 export const movieAPI = () => {
     return {
-        getByTitle: (title: string) => {
-            return instance.get<ResponseType>(`${apiKey}&t=${title}`)
+        getByTitle: (title: string, year?: string) => {
+            return instance.get<ResponseType>(`${apiKey}&t=${title}&y=${year}`)
         }
     }
 }

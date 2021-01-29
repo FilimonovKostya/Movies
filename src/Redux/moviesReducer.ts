@@ -22,10 +22,10 @@ export const moviesReducer = (state: ResponseType = initialState, actions: Actio
 
 const setMoviesAC = (movies: ResponseType) => ({type: 'SET-MOVIES', movies} as const)
 
-export const thunkSetMovies = (title: string) => (dispatch: Dispatch<ActionsType>) => {
+export const thunkSetMovies = (title: string, year?:string) => (dispatch: Dispatch<ActionsType>) => {
     dispatch(setStatusLoadingAC(true))
     dispatch(setStatusGetFilms('loading'))
-    movieAPI().getByTitle(title)
+    movieAPI().getByTitle(title, year)
         .then((res) => {
             dispatch(setStatusGetFilms('success'))
             dispatch(setMoviesAC(res.data))

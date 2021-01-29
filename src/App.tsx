@@ -15,18 +15,23 @@ function App() {
     const description = useSelector<RootStoreType, string>(state => state.movies.Plot)
     const title = useSelector<RootStoreType, string>(state => state.movies.Title)
     const rating = useSelector<RootStoreType, string>(state => state.movies.imdbRating)
-    const [inputValue, setInputValue] = useState<string>('')
+    const [titleInputValue, setTitleInputValue] = useState<string>('')
+    const [year,setYear] = useState<string>('')
     const isLoading = useSelector<RootStoreType, boolean>(state => state.app.isLoading)
     const isError = useSelector<RootStoreType, string | null>(state => state.app.isError)
     const status = useSelector<RootStoreType, string>(state => state.app.statusGetFilms)
 
     const onClickHandler = () => {
-        dispatch(thunkSetMovies(inputValue))
-        setInputValue('')
+        dispatch(thunkSetMovies(titleInputValue, year))
+        setTitleInputValue('')
     }
 
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.currentTarget.value)
+        setTitleInputValue(e.currentTarget.value)
+    }
+
+    const onChangeYear = (e: ChangeEvent<HTMLInputElement>) => {
+        setYear(e.currentTarget.value)
     }
 
     return <div>
@@ -35,9 +40,18 @@ function App() {
             <h1>OMDb API</h1>
             <input type="text" placeholder="Search" id="search"
                    disabled={isLoading}
-                   value={inputValue}
+                   value={titleInputValue}
                    className="search"
                    onChange={onChangeInputValue}
+                   onKeyPress={(event => {
+                       if (event.key === 'Enter') onClickHandler()
+                   })}
+            />
+            <input type="text" placeholder="Year" id="year"
+                   disabled={isLoading}
+                   value={year}
+                   className="search"
+                   onChange={onChangeYear}
                    onKeyPress={(event => {
                        if (event.key === 'Enter') onClickHandler()
                    })}
